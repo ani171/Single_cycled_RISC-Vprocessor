@@ -46,6 +46,8 @@ endmodule
 ```
 ![image](https://github.com/ani171/risc/assets/97838595/ec4ab173-9edc-4869-af60-3ab21a35d8bc)
 
+![image](https://github.com/ani171/risc/assets/97838595/0474089a-6431-4f67-84c1-bc98233ff04d)
+
 - pc_sel
 	- 2'b00: Increment the PC --> pc_out=pc_out+4
 	- 2'b01: Branch
