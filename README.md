@@ -16,9 +16,7 @@
 module ProgramCounter(
     input bit clk,          
     input bit [1:0] pc_sel,  
-    input bit [31:0] imm,    
-    input bit branch_taken,  
-    input bit jump,          
+    input bit [31:0] imm,           
     output bit [31:0] pc_out  
 );
 
@@ -30,28 +28,23 @@ module ProgramCounter(
             pc_out <= pc_out + 4; 
         end 
 		  else if (pc_sel == 2'b01) begin 
-            if (branch_taken) begin
-                pc_out <= pc_out + imm; 
-            end
+            pc_out <= pc_out + imm; 
         end 
 		  else if (pc_sel == 2'b10) begin 
-            if (jump) begin
-                pc_out <= imm; 
-            end
+            pc_out <= imm; 
         end
     end
+	 
 endmodule
 ```
-![image](https://github.com/ani171/risc/assets/97838595/ec4ab173-9edc-4869-af60-3ab21a35d8bc)
+![image](https://github.com/ani171/risc/assets/97838595/108801f7-bc50-4750-a53c-b3037edd4cc2)
+![image](https://github.com/ani171/risc/assets/97838595/0eb8c608-2b1b-49c4-8704-b6dda816e717)
 
-![image](https://github.com/ani171/risc/assets/97838595/0474089a-6431-4f67-84c1-bc98233ff04d)
 
 - pc_sel
 	- 2'b00: Increment the PC --> pc_out=pc_out+4
 	- 2'b01: Branch
-		- If branch_taken=1 --> pc_out=pc_out+imm
 	- 2'b10: Jump
-		- If jump=1 --> pc_out = imm
 
 #### Code Memory
 - Obtaining instruction from the PC output which has the address that has the instruction
