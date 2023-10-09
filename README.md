@@ -9,9 +9,10 @@
 -  CPU fetches the next instruction from memory
 -  The program counter (PC) is used to determine the memory address of the instruction to be fetched
 -  The instruction is then stored in an instruction register for decoding and execution
-<details> Program Counter </details>
-<summary>
-  
+
+<summary> Program Counter</summary>
+<details> 
+
 ```
 module ProgramCounter(
     input bit clk,          
@@ -44,5 +45,4 @@ endmodule
 ```
 ![image](https://github.com/ani171/risc/assets/97838595/ec4ab173-9edc-4869-af60-3ab21a35d8bc)
 
-</summary>
-
+</details>
