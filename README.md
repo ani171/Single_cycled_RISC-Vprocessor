@@ -5,14 +5,12 @@
 3. Execution
 4. Memory Access
 5. Write Back
-### Instruction Fetch
+## Instruction Fetch
 -  CPU fetches the next instruction from memory
 -  The program counter (PC) is used to determine the memory address of the instruction to be fetched
 -  The instruction is then stored in an instruction register for decoding and execution
 
-<summary> Program Counter </summary>
-
-<details> 
+#### Program Counter
 
 ```
 module ProgramCounter(
@@ -55,4 +53,3 @@ endmodule
 	- 2'b10: Jump
 		- If jump=1 --> pc_out = imm
 
-</details>
