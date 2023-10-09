@@ -53,3 +53,25 @@ endmodule
 	- 2'b10: Jump
 		- If jump=1 --> pc_out = imm
 
+#### Code Memory
+- Obtaining instruction from the PC output which has the address that has the instruction
+- Considering a 16-bit range
+
+```
+module MyMemory(
+    input bit clk,        
+    input bit [31:0] address, 
+    output bit [31:0] data 
+);
+	 // Considering a 16-bit range
+    reg [31:0] memory_array [-32768:32767];
+
+    always @(posedge clk) begin
+        data <= memory_array[address];
+    end
+endmodule
+
+```
+![image](https://github.com/ani171/risc/assets/97838595/b05b8a9d-439e-4f22-b693-cfc462531547)
+
+![image](https://github.com/ani171/risc/assets/97838595/c8b517e3-cc36-4655-b1df-0611f2a61db7)
