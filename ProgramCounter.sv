@@ -1,9 +1,7 @@
 module ProgramCounter(
     input bit clk,          
     input bit [1:0] pc_sel,  
-    input bit [31:0] imm,    
-    input bit branch_taken,  
-    input bit jump,          
+    input bit [31:0] imm,           
     output bit [31:0] pc_out  
 );
 
@@ -15,14 +13,10 @@ module ProgramCounter(
             pc_out <= pc_out + 4; 
         end 
 		  else if (pc_sel == 2'b01) begin 
-            if (branch_taken) begin
-                pc_out <= pc_out + imm; 
-            end
+            pc_out <= pc_out + imm; 
         end 
 		  else if (pc_sel == 2'b10) begin 
-            if (jump) begin
-                pc_out <= imm; 
-            end
+            pc_out <= imm; 
         end
     end
 	 
