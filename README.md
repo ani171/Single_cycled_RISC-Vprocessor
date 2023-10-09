@@ -68,3 +68,32 @@ endmodule
 ![image](https://github.com/ani171/risc/assets/97838595/b05b8a9d-439e-4f22-b693-cfc462531547)
 
 ![image](https://github.com/ani171/risc/assets/97838595/c8b517e3-cc36-4655-b1df-0611f2a61db7)
+
+#### Instruction Fetch Block
+
+```
+module InstructionFetch(
+    input bit clk,            
+    output bit [31:0] instruction 
+);
+
+    bit [31:0] pc_next;  
+
+    ProgramCounter PC (
+        .clk(clk),
+        .pc_sel(2'b00),      
+        .imm(32'h0),                 
+        .pc_out(pc_next)     
+    );
+
+
+    MyMemory memory (
+       .clk(clk),
+       .address(pc_next),
+       .data(instruction)
+    );
+
+endmodule
+```
+![image](https://github.com/ani171/risc/assets/97838595/e9c3b418-b83b-45b1-bb92-3afb2927b165)
+
