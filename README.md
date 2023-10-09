@@ -10,7 +10,8 @@
 -  The program counter (PC) is used to determine the memory address of the instruction to be fetched
 -  The instruction is then stored in an instruction register for decoding and execution
 
-<summary> Program Counter</summary>
+<summary> Program Counter </summary>
+
 <details> 
 
 ```
