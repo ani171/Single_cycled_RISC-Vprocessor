@@ -8,9 +8,7 @@ module InstructionFetch(
     ProgramCounter PC (
         .clk(clk),
         .pc_sel(2'b00),      
-        .imm(32'h0),         
-        .branch_taken(1'b0), 
-        .jump(1'b0),         
+        .imm(32'h0),                 
         .pc_out(pc_next)     
     );
 
