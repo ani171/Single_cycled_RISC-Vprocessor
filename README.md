@@ -46,4 +46,11 @@ endmodule
 ```
 ![image](https://github.com/ani171/risc/assets/97838595/ec4ab173-9edc-4869-af60-3ab21a35d8bc)
 
+- pc_sel
+	- 2'b00: Increment the PC - pc_out=pc_out+4
+	- 2'b01: Branch
+		- If branch_taken=1 --> pc_out=pc_out+imm
+	- 2'b10: Jump
+		- If jump=1 --> pc_out = imm
+
 </details>
