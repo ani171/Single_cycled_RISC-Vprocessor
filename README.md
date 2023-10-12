@@ -1,4 +1,4 @@
-# RISC-V
+![image](https://github.com/ani171/risc/assets/97838595/df7cd718-371f-42f9-95ec-db9f0563c45d)# RISC-V
 -  Different stages typically involved in the execution of instructions in a RISC-V CPU
 1. Instruction Fetch
 2. Instruction Decode
@@ -52,22 +52,34 @@ endmodule
 
 ```
 module MyMemory(
-    input bit clk,        
-    input bit [31:0] address, 
-    output bit [31:0] data 
+    input bit [31:0] pc,                 
+    output bit [31:0] instr,
+	 input bit clk
 );
-	 // Considering a 16-bit range
-    reg [31:0] memory_array [-32768:32767];
+
+    reg [31:0] mem [0:32768]; 
+
+   
+    initial begin
+
+        mem[0] = 32'b00000110000101000000110010010011;
+        mem[4] = 32'b00000001000101000100001100010011;
+	mem[8] = 32'b01000000000000000110000110010011;
+	mem[12] = 32'b00000110010010000000000010000011;
+	mem [16] = 32'b00000010000110000110000110010011;
+        
+    end
 
     always @(posedge clk) begin
-        data <= memory_array[address];
+        instr = mem[pc >> 2]; 
     end
+
 endmodule
 
 ```
-![image](https://github.com/ani171/risc/assets/97838595/b05b8a9d-439e-4f22-b693-cfc462531547)
 
-![image](https://github.com/ani171/risc/assets/97838595/c8b517e3-cc36-4655-b1df-0611f2a61db7)
+
+![image](https://github.com/ani171/risc/assets/97838595/7ec18f9e-617f-46e0-a670-0c044915c626)
 
 #### Instruction Fetch Block
 
