@@ -1,4 +1,4 @@
-![image](https://github.com/ani171/risc/assets/97838595/df7cd718-371f-42f9-95ec-db9f0563c45d)# RISC-V
+# RISC-V
 -  Different stages typically involved in the execution of instructions in a RISC-V CPU
 1. Instruction Fetch
 2. Instruction Decode
