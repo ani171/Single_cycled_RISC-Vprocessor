@@ -89,23 +89,29 @@ module InstructionFetch(
     output bit [31:0] instruction 
 );
 
-    bit [31:0] pc_next;  
+    bit signed [31:0] i;          
+    bit b1;              
+    bit zflag;          
+    bit [31:0] pc_out;
+	 bit [31:0] pc_next; 
 
-    ProgramCounter PC (
+    Program_Counter PC (
         .clk(clk),
-        .pc_sel(2'b00),      
-        .imm(32'h0),                 
+        .branch(b1),      
+        .imm(i), 
+		  .zero_flag(zflag),
         .pc_out(pc_next)     
     );
 
 
     MyMemory memory (
        .clk(clk),
-       .address(pc_next),
-       .data(instruction)
+       .pc(pc_next),
+       .instr(instruction)
     );
 
 endmodule
+
 ```
-![image](https://github.com/ani171/risc/assets/97838595/e9c3b418-b83b-45b1-bb92-3afb2927b165)
+![image](https://github.com/ani171/risc/assets/97838595/27b8b76f-91c4-41c2-b6ea-2cf9feaa9762)
 
