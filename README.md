@@ -154,6 +154,8 @@ module InstructionFetch_tb;
 
 endmodule
 ```
+![image](https://github.com/ani171/risc/assets/97838595/73da5dd4-4f90-4987-b6a0-b16660bbcd04)
+
 
 ## Execution
 
