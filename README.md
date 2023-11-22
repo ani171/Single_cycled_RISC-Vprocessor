@@ -295,3 +295,61 @@ endmodule
 ````
 ![image](https://github.com/ani171/risc/assets/97838595/f8696fbc-95f9-4dd8-96c9-b61e7567f1a9)
 
+## Memory Access
+- The Memory Access stage is responsible for interacting with the data memory subsystem. This is particularly relevant for load and store instructions.
+- In the case of a load instruction, the Memory stage retrieves data from the data memory based on the effective memory address calculated in the previous stages. For store instructions, the stage writes data to the specified memory location.
+
+```
+module memory_unit
+#(
+  parameter ADDRSIZE = 32,
+  WORDSIZE = 32
+) (
+  input clk,
+  input logic wren, rden,           
+  input logic [ADDRSIZE-1:0] addr,  
+  input logic [WORDSIZE-1:0] d,     
+  output logic[WORDSIZE-1:0] q 
+);
+
+  logic [WORDSIZE-1:0] mem [0:2**ADDRSIZE-1];
+
+  always @(posedge clk)
+  begin
+    if (wren)
+      mem[addr] <= d;
+    else
+      mem[addr] <= mem[addr];
+  end
+
+  assign q = mem[addr];
+
+  int i;
+  initial
+  begin
+    for (i = 0; i < 2**ADDRSIZE-1; i=i+1)
+      mem[i] = 0;
+  end
+
+endmodule
+```
+
+![image](https://github.com/ani171/risc/assets/97838595/a5cdb182-2b37-4896-84e8-865fb26a6e2e)
+
+## Write Back
+- In the Write Back stage, the result of the execution, often obtained from the Execution stage, is written back to the register file or register bank.
+- The result is stored in the destination register specified by the instruction.
+
+```
+module writeback(
+input logic [31:0]ALUout,
+input logic [31:0]q,
+input logic memtoreg,
+output logic [31:0]regwritedata);
+
+assign regwritedata=(memtoreg?q:ALUout);
+endmodule
+```
+
+![image](https://github.com/ani171/risc/assets/97838595/dc7243ec-9fb8-46d7-b418-2efdcb4bf7a8)
+
