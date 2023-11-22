@@ -156,6 +156,212 @@ endmodule
 ```
 ![image](https://github.com/ani171/risc/assets/97838595/73da5dd4-4f90-4987-b6a0-b16660bbcd04)
 
+## Instruction Decode
+- The instruction decode stage in a processor involves the interpretation of the opcode and other fields of an instruction
+- The opcode of the fetched instruction is examined to determine the type of operation to be performed. Different opcodes correspond to different categories of instructions, and the processor must identify the instruction type.
+- Register operands and immediate values are identified based on the decoded instruction
+- Control signals are generated based on the decoded instruction to control various components of the processor, such as the ALU, register file, and memory unit. Control signals ensure that the subsequent stages of the pipeline or the relevant functional units operate correctly for the given instruction.
+
+#### Control Unit
+
+```
+module control_unit (
+  input logic [6:0] instruction, 
+  input logic clk,
+  output logic branch,
+  output logic memread,
+  output logic memwrite,
+  output logic memtoreg,
+  output logic alusrc,
+  output logic regwrite,
+  output logic [1:0] aluop
+);
+  localparam logic [6:0] RT = 7'b0110011,
+	     IT = 7'b0010011, 
+	     LW = 7'b0000011,
+	     SW = 7'b0100011,
+	     BEQ = 7'b1100011;
+
+  always_ff @(posedge clk) begin
+    
+    alusrc    = 1'b0;
+    memtoreg  = 1'b0;
+    regwrite  = 1'b0;
+    memread   = 1'b0;
+    memwrite  = 1'b0;
+    branch    = 1'b0;
+    aluop     = 2'b00;
+	 
+    if (instruction == RT) begin
+      alusrc    = 1'b0;
+      memtoreg  = 1'b1;
+      regwrite  = 1'b1;
+      memread   = 1'b0;
+      memwrite  = 1'b0;
+      branch    = 1'b0;
+      aluop     = 2'b10;
+    end
+
+    if (instruction == IT) begin
+      alusrc    = 1'b0;
+      memtoreg  = 1'b0;
+      regwrite  = 1'b1;
+      memread   = 1'b0;
+      memwrite  = 1'b0;
+      branch    = 1'b0;
+      aluop     = 2'b10;
+    end
+
+    if (instruction == LW) begin
+      alusrc    = 1'b1;
+      memtoreg  = 1'b1;
+      regwrite  = 1'b1;
+      memread   = 1'b1;
+      memwrite  = 1'b0;
+      branch    = 1'b0;
+      aluop     = 2'b00;
+    end
+
+    if (instruction == SW) begin
+      alusrc    = 1'b1;
+      memtoreg  = 1'b0;
+      regwrite  = 1'b0;
+      memread   = 1'b0;
+      memwrite  = 1'b1;
+      branch    = 1'b0;
+      aluop     = 2'b10;
+    end
+
+    if (instruction == BEQ) begin
+      alusrc    = 1'b0;
+      memtoreg  = 1'b0;
+      regwrite  = 1'b0;
+      memread   = 1'b0;
+      memwrite  = 1'b0;
+      branch    = 1'b1;
+      aluop     = 2'b01;
+    end
+  end
+endmodule
+```
+![image](https://github.com/ani171/risc/assets/97838595/3816c508-bfaa-4d9c-b16b-2dc4ee98687b)
+
+#### Immediate generator
+
+```
+module immediate_generator #(
+  parameter INSTRSIZE = 32,
+  IMMSIZE = 32
+) (
+  input [INSTRSIZE-1:0] instruction,
+  output reg signed [IMMSIZE-1:0] immediate
+);
+  localparam RT = 7'b0110011,
+             IT = 7'b0010011, 
+	     LW = 7'b0000011, 
+	     SW = 7'b0100011,
+	    BEQ = 7'b1100011;
+
+  always @(*)
+  begin
+    case (instruction[6:0])
+      IT, LW: begin
+        immediate = { {20{instruction[31]}}, instruction[31:20] };
+      end
+      SW: begin
+        immediate = { {20{instruction[31]}}, instruction[31:25], instruction[11:7] };
+      end
+      BEQ: begin
+        immediate = { {19{instruction[31]}}, instruction[31], instruction[7], instruction[30:25], instruction[11:8], 1'b0 };
+      end
+    endcase
+  end
+
+endmodule
+```
+![image](https://github.com/ani171/risc/assets/97838595/c7d21abc-57cb-4081-8ff4-8736ee8a723a)
+
+![image](https://github.com/ani171/risc/assets/97838595/5275e8ea-2e10-4e00-a9ef-a1762ca73c74)
+
+
+#### Register file
+
+```
+module register_file(
+input logic[4:0] Readreg1,
+input logic[4:0] Readreg2,
+input logic[4:0] writereg,
+input logic[31:0] writedata,
+input reg regwrite,
+input logic clk,
+output logic[31:0] readdata1,
+output logic[31:0] readdata2
+);
+logic[31:0] registers[31:0];
+always @(posedge clk) begin
+  if(regwrite) begin
+     registers[writereg] <= writedata;
+  end
+end
+assign readdata1 = registers[Readreg1];
+assign readdata2 = registers[Readreg2];
+int i;
+initial
+begin
+  for(i=0;i<=31;i++)
+    registers[i]=0;
+  end
+ 
+endmodule
+```
+![image](https://github.com/ani171/risc/assets/97838595/c2fc9d0b-0a7e-429d-852f-cb5e9234ceae)
+
+#### Instruction Decode
+
+```
+module ID(
+  input clk,
+  input logic [31:0] writedata_1,
+  output logic [31:0] instruction_1,
+  output logic branch_1, memread_1, memwrite_1,memtoreg_1, alusrc_1, regwrite_1,
+  output logic[1:0] aluop_1,
+  output logic [31:0]readdata1_1, readdata2_1,
+  output logic [31:0] immediate_1);
+  
+ control_unit cu (
+.clk(clk),
+    .instruction(instruction_1[6:0]), 
+    .branch(branch_1),
+    .memread(memread_1),
+    .memwrite(memwrite_1),
+    .memtoreg(memtoreg_1),
+    .alusrc(alusrc_1),
+    .regwrite(regwrite_1),
+    .aluop(aluop_1)
+  );
+
+  register_file rf (
+    .clk(clk),
+    .regwrite(regwrite_1),
+    .Readreg1(instruction_1[19:15]),
+    .Readreg2(instruction_1[24:20]),
+    .writereg(instruction_1[11:7]),
+    .writedata( writedata_1),
+    .readdata1(readdata1_1),
+    .readdata2(readdata2_1)
+  );
+
+  immediate_generator #(
+    .INSTRSIZE(32),
+    .IMMSIZE(32)
+  ) ig (
+    .instruction(instruction_1[31:0]),
+    .immediate(immediate_1[31:0])
+  ); 
+
+endmodule
+```
+![image](https://github.com/ani171/risc/assets/97838595/e8917bbf-c29f-4cee-a8ca-e57bd6bbacc9)
 
 ## Execution
 
