@@ -424,6 +424,7 @@ module tb_ID;
 
 endmodule
 ```
+![image](https://github.com/ani171/risc/assets/97838595/4ae43799-d082-416d-8615-7d60c9037396)
 
 ## Execution
 
