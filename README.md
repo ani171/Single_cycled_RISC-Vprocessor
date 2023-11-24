@@ -451,7 +451,8 @@ end
     
 endmodule
 ```
-![image](https://github.com/ani171/risc/assets/97838595/14142950-575c-4981-bde3-0890141871b8)
+![image](https://github.com/ani171/risc/assets/97838595/03b7f37b-a3b3-4b3f-884c-701ffd037e86)
+
 
 #### Branch condition checking
 - Conditional Branching: The module is designed to handle a specific type of branch instruction (opcode 7'b1100011) with the specified function code (funct3 BEQ). The condition for branching is (rdata1 == rdata2).
@@ -488,8 +489,7 @@ always @(posedge clk) begin
 endmodule
 ```
 
-![image](https://github.com/ani171/risc/assets/97838595/ed93feb2-83d0-4423-9f19-e769386c9d07)
-
+![image](https://github.com/ani171/risc/assets/97838595/e5899317-5469-4614-bf03-c880db6a46ed)
 
 #### ALU
 - performs various arithmetic and logical operations based on the specified control signal (alu_op)
@@ -534,9 +534,7 @@ endmodule
 
 ```
 
-![image](https://github.com/ani171/risc/assets/97838595/2a0ac813-e6bb-4f91-9dfd-cf514bb56fe5)
-
-![image](https://github.com/ani171/risc/assets/97838595/8248091f-166a-4023-8b08-a57f20526c8f)
+![image](https://github.com/ani171/risc/assets/97838595/fed65616-0dbc-4d72-8ed1-3586996b86bb)
 
 #### Execution
 
@@ -562,7 +560,8 @@ branchc bc1 (clk, btype,funct3,opcode,rdata1,rdata3,br_taken);
 
 endmodule
 ````
-![image](https://github.com/ani171/risc/assets/97838595/f8696fbc-95f9-4dd8-96c9-b61e7567f1a9)
+![image](https://github.com/ani171/risc/assets/97838595/4bf5d547-3994-48fd-a09f-9e32f1b20e0b)
+
 
 ## Memory Access
 - The Memory Access stage is responsible for interacting with the data memory subsystem. This is particularly relevant for load and store instructions.
