@@ -310,7 +310,7 @@ begin
  
 endmodule
 ```
-![image](https://github.com/ani171/risc/assets/97838595/c2fc9d0b-0a7e-429d-852f-cb5e9234ceae)
+![WhatsApp Image 2023-11-24 at 10 19 59 AM](https://github.com/ani171/risc/assets/97838595/f8f166db-0138-48af-a870-8c8356155a8c)
 
 #### Instruction Decode
 
@@ -357,7 +357,8 @@ module ID(
 
 endmodule
 ```
-![image](https://github.com/ani171/risc/assets/97838595/e8917bbf-c29f-4cee-a8ca-e57bd6bbacc9)
+![WhatsApp Image 2023-11-24 at 10 22 18 AM](https://github.com/ani171/risc/assets/97838595/5b2d24af-84fb-4aa9-b07f-bdc20e02ec21)
+
 
 #### Testbench for Instruction decode
 ```
