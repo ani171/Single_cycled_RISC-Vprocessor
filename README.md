@@ -1,4 +1,4 @@
-![image](https://github.com/ani171/risc/assets/97838595/776bbfdd-3e17-4898-bf6f-4e1099637612)# RISC-V
+# RISC-V
 
 
 ![WhatsApp Image 2023-11-22 at 6 31 54 PM (1)](https://github.com/ani171/risc/assets/97838595/9c55fbeb-6244-47bb-8e85-0cb2b2645523)
