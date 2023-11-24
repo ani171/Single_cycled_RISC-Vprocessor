@@ -49,9 +49,6 @@ endmodule
 ```
 ![image](https://github.com/ani171/risc/assets/97838595/77205218-e48c-4012-95a8-baf08d81c442)
 
-
-
-
 #### Code Memory
 - Obtaining instruction from the PC output which has the address that has the instruction
 - Considering a 16-bit range
@@ -245,7 +242,7 @@ module control_unit (
   end
 endmodule
 ```
-![image](https://github.com/ani171/risc/assets/97838595/3816c508-bfaa-4d9c-b16b-2dc4ee98687b)
+![WhatsApp Image 2023-11-24 at 10 16 06 AM](https://github.com/ani171/risc/assets/97838595/e9f461d1-8e9e-47f3-adf6-262fcec10a74)
 
 #### Immediate generator
 
@@ -280,9 +277,7 @@ module immediate_generator #(
 
 endmodule
 ```
-![image](https://github.com/ani171/risc/assets/97838595/c7d21abc-57cb-4081-8ff4-8736ee8a723a)
-
-![image](https://github.com/ani171/risc/assets/97838595/5275e8ea-2e10-4e00-a9ef-a1762ca73c74)
+![WhatsApp Image 2023-11-24 at 10 18 05 AM](https://github.com/ani171/risc/assets/97838595/42ad2a98-8271-40a0-9f25-111d03bf0f48)
 
 
 #### Register file
