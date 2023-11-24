@@ -622,4 +622,41 @@ endmodule
 
 ![image](https://github.com/ani171/risc/assets/97838595/86f4f842-942c-4f4b-a350-31b7269869d3)
 
+#### Testbench for WriteBack
+
+```
+module tb_writeback;
+
+  logic [31:0] ALUout;
+  logic [31:0] q;
+  logic memtoreg;
+  logic [31:0] regwritedata;
+
+  writeback uut (
+    .ALUout(ALUout),
+    .q(q),
+    .memtoreg(memtoreg),
+    .regwritedata(regwritedata)
+  );
+
+  initial begin
+    ALUout = 32'h0000_0000;
+    q = 32'h0000_1234;
+    memtoreg = 1'b0;
+
+    #10;
+    memtoreg = 1'b1; 
+    #10;
+    memtoreg = 1'b0; 
+    #10;
+    ALUout = 32'h5678_9ABC; 
+    #100;
+    $stop; 
+  end
+
+endmodule
+```
+![WhatsApp Image 2023-11-23 at 9 51 13 PM](https://github.com/ani171/risc/assets/97838595/6359db91-9ed9-4e87-ad35-b76fe9710cde)
+
+
 
