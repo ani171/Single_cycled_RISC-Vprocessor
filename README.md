@@ -1,6 +1,7 @@
 # RISC-V
 
-![WhatsApp Image 2023-11-22 at 6 31 54 PM](https://github.com/ani171/risc/assets/97838595/055b03f3-de84-4f6c-927c-45bbf077d35b)
+
+![WhatsApp Image 2023-11-22 at 6 31 54 PM (1)](https://github.com/ani171/risc/assets/97838595/9c55fbeb-6244-47bb-8e85-0cb2b2645523)
 
 
 -  Different stages typically involved in the execution of instructions in a RISC-V CPU
