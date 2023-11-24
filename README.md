@@ -602,7 +602,8 @@ module memory_unit
 endmodule
 ```
 
-![image](https://github.com/ani171/risc/assets/97838595/a5cdb182-2b37-4896-84e8-865fb26a6e2e)
+![image](https://github.com/ani171/risc/assets/97838595/537c81d3-92f8-416c-9110-ef1ec28ca726)
+
 
 ## Write Back
 - In the Write Back stage, the result of the execution, often obtained from the Execution stage, is written back to the register file or register bank.
@@ -619,5 +620,6 @@ assign regwritedata=(memtoreg?q:ALUout);
 endmodule
 ```
 
-![image](https://github.com/ani171/risc/assets/97838595/dc7243ec-9fb8-46d7-b418-2efdcb4bf7a8)
+![image](https://github.com/ani171/risc/assets/97838595/86f4f842-942c-4f4b-a350-31b7269869d3)
+
 
