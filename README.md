@@ -1,4 +1,4 @@
-# RISC-V
+![image](https://github.com/ani171/risc/assets/97838595/776bbfdd-3e17-4898-bf6f-4e1099637612)# RISC-V
 
 
 ![WhatsApp Image 2023-11-22 at 6 31 54 PM (1)](https://github.com/ani171/risc/assets/97838595/9c55fbeb-6244-47bb-8e85-0cb2b2645523)
@@ -83,9 +83,7 @@ module MyMemory(
 endmodule
 
 ```
-
-
-![image](https://github.com/ani171/risc/assets/97838595/7ec18f9e-617f-46e0-a670-0c044915c626)
+![WhatsApp Image 2023-11-24 at 10 01 47 AM](https://github.com/ani171/risc/assets/97838595/20be9f01-537b-43eb-a97d-4a0d43294e53)
 
 #### Instruction Fetch Block
 
@@ -119,7 +117,7 @@ module InstructionFetch(
 endmodule
 
 ```
-![image](https://github.com/ani171/risc/assets/97838595/27b8b76f-91c4-41c2-b6ea-2cf9feaa9762)
+![WhatsApp Image 2023-11-24 at 10 04 46 AM](https://github.com/ani171/risc/assets/97838595/6698db43-6117-486e-9dff-1253532b51ba)
 
 #### Testbench for Instruction Fetch Block
 
@@ -156,7 +154,8 @@ module InstructionFetch_tb;
 
 endmodule
 ```
-![image](https://github.com/ani171/risc/assets/97838595/73da5dd4-4f90-4987-b6a0-b16660bbcd04)
+
+![WhatsApp Image 2023-11-22 at 7 46 37 PM](https://github.com/ani171/risc/assets/97838595/f232361b-81f2-442f-8f0b-28d979c0ee7e)
 
 ## Instruction Decode
 - The instruction decode stage in a processor involves the interpretation of the opcode and other fields of an instruction
