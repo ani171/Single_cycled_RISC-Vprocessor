@@ -660,3 +660,24 @@ endmodule
 
 
 
+## Single Cycled RISC-V Processor
+
+```
+module final_top(input bit clk
+);
+
+
+wire mlcode,imm32,rdata1,rdata2,reg_wr,alu_src,wb_sel,alu_op,wr_en,rd_en,rmdata,wdata;
+
+instfetch if1 (clk,br_taken,imm,mlcode);
+
+dcd_stg dcd1 (clk,mlcode,wdata,rdata1,rdata2,imm32,reg_wr,alu_src,wb_sel,alu_op,btype,wr_en,rd_en);
+
+exe_stg exe1 (clk,rdata1,rdata2,imm32,alu_op,alu_src,ALUResult,br_taken);
+
+mem_stg ma1 (clk,wr_en,rd_en,ALUResult,imm32,rdata);
+
+wb_stg wb1 (clk,ALUResult,rdata,wb_sel,wdata);
+
+endmodule
+```
